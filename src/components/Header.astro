@@ -4,7 +4,7 @@ import { SITE_TITLE } from '../consts';
 import { Image } from 'astro:assets';
 ---
 
-<header class="min-h-full">
+<header class="min-h-full font-display">
 	<nav class="bg-background">
 		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-4">
 			<div class="h-16 flex items-center justify-between">
@@ -21,7 +21,9 @@ import { Image } from 'astro:assets';
 				</div>
 				<div class="w-full flex items-center justify-center">
 					<div class="relative bottom-2">
-						<Image src="/images/brand-logo-black.png" alt="Brand Logo" width="148" height="42" />
+						<a href="/">
+							<Image src="/images/brand-logo-black.png" alt="Brand Logo" width="148" height="42" />
+						</a>
 					</div>
 				</div>
 				<div class="w-full flex items-center justify-end">
@@ -36,19 +38,17 @@ import { Image } from 'astro:assets';
 		</div>
 	</nav>
 	
-	<header class="bg-white ">
-		<div class="mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8 h-[80px] border border-0 border-b-4 relative">
-			<div class="w-full flex justify-center items-center absolute -bottom-1">
-				<ul class="flex flex-row gap-4">
-					<li class="active font-semibold border border-0 border-b-4 border-black">All</li>
-					<li>Tech</li>
-					<li>Science</li>
-					<li>Money</li>
-					<li>Travel</li>
-					<li>Entertainment</li>
-					<li>More</li>
-				</ul>
-			</div>
+	<div class="mx-auto max-w-7xl text-lg px-4 pt-6 sm:px-6 lg:px-8 h-[80px] border-b-4 relative overflow-hidden">
+		<div class="w-full flex justify-center items-center absolute -bottom-1">
+			<ul class="flex flex-row gap-4">
+				<li class="active font-semibold border border-0 border-b-4 border-black">All</li>
+				<li>Tech</li>
+				<li>Science</li>
+				<li>Money</li>
+				<li>Travel</li>
+				<li>Entertainment</li>
+				<li>More</li>
+			</ul>
 		</div>
-	</header>
+	</div>
 </header>

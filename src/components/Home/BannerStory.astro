@@ -1,0 +1,29 @@
+---
+const {} = Astro.props;
+---
+
+<div class="w-full h-full px-6 relative">
+    <div class="rounded h-full overflow-hidden">
+        <!-- <Image src="/blog-placeholder-3.jpg" alt="A description of my image." inferSize={true} />  -->
+         <img src="/blog-placeholder-3.jpg" class="h-[70%]" alt="Banner Story Image" />
+    </div>
+    <div class="absolute bottom-1 w-[100%] flex justify-center items-center">
+        <div class="max-w-[75%] bg-background rounded p-10 flex flex-col gap-6">
+            <div class="flex gap-4 font-display text-md">
+                <span>Suraj</span>
+                <span> - </span>
+                <span>Januray 1, 2025</span>
+            </div>
+            <div>
+                <h3 class="text-4xl font-black">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat dolorum incidunt deserunt sapiente.
+                </h3>
+            </div>
+            <div>
+                <p class="text-sm">
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Commodi magni nisi placeat. Repellendus assumenda rerum quas corrupti aliquid quae incidunt expedita laudantium ipsam fuga, quasi quisquam quod inventore ut commodi!
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

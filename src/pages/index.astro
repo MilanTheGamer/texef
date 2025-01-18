@@ -1,10 +1,46 @@
 ---
-import '@/styles/global.css'
 import MainLayout from '@/layouts/MainLayout.astro';
+import BannerStory from '@/components/Home/BannerStory.astro';
+import TopStories from '@/components/Home/TopStories.astro';
+import NewsCard from '@/components/NewsCard.astro';
 ---
 
 <MainLayout>
 	<div class="min-h-svh">
-		Content 
+		<section class="flex flex-row w-100 h-[580px] px-6 gap-2 overflow-hidden">
+			<div class="w-2/3 h-full">
+				<a href="/article/first-post/" transition:name="image_using-mdx">
+					<BannerStory />
+				</a>
+			</div>
+			<div class="w-1/3 h-full">
+				<TopStories />
+			</div>
+		</section>
+		<section class="mt-20 py-10 border-t-4 border-dotted flex flex-col">
+			<h4 class="text-4xl font-bold" style="">Tech</h4>
+			<div class="mt-10 flex flex-col gap-6">
+				<div class="w-full">
+					<NewsCard 
+						size='lg'
+						author="Suraj",
+						date="Januray 1, 2025";
+						image="/blog-placeholder-3.jpg"
+						heading="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rerum nemo molestias nulla iste."
+						description='Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus placeat quaerat illum harum ullam nemo ipsa accusantium ducimus, repudiandae labore officiis vero aspernatur iure sequi aliquid voluptate cum blanditiis esse.Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus placeat quaerat illum harum ullam nemo ipsa accusantium ducimus, repudiandae labore officiis vero aspernatur iure sequi aliquid voluptate cum blanditiis esse.Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus placeat quaerat illum harum ullam nemo ipsa accusantium ducimus, repudiandae labore officiis vero aspernatur iure sequi aliquid voluptate cum blanditiis esse.'
+					/>
+				</div>
+				<div class="w-full">
+					<NewsCard 
+						size='lg'
+						author="Suraj",
+						date="Januray 1, 2025";
+						image="/blog-placeholder-3.jpg"
+						heading="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rerum nemo molestias nulla iste."
+						description='Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus placeat quaerat illum harum ullam nemo ipsa accusantium ducimus, repudiandae labore officiis vero aspernatur iure sequi aliquid voluptate cum blanditiis esse.Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus placeat quaerat illum harum ullam nemo ipsa accusantium ducimus, repudiandae labore officiis vero aspernatur iure sequi aliquid voluptate cum blanditiis esse.Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus placeat quaerat illum harum ullam nemo ipsa accusantium ducimus, repudiandae labore officiis vero aspernatur iure sequi aliquid voluptate cum blanditiis esse.'
+					/>
+				</div>
+			</div>
+		</section>
 	</div>
 </MainLayout>

@@ -3,6 +3,10 @@ export default {
   darkMode: ["class"],
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
+    fontFamily: {
+      display: "Atkinson",
+      body: "Playfair Display",
+    },
     extend: {
       borderRadius: {
         lg: "var(--radius)",
