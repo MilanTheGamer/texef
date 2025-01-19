@@ -4,19 +4,18 @@ import { SITE_TITLE } from '../consts';
 import { Image } from 'astro:assets';
 ---
 
-<header class="min-h-full font-display">
+<header class="min-h-full font-display border-b-4 pb-2">
 	<nav class="bg-background">
 		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-4">
 			<div class="h-16 flex items-center justify-between">
 				<div class="w-full flex items-center justify-start">
-					<div class="relative flex flex-row">
-						<input class="h-[54px] w-[200px] border border-[3px] border-gray-600 rounded-full text-lg py-2 pl-3 pr-[40px]" placeholder="Search" />
+					<div class="hidden lg:block relative flex flex-row">
+						<input class="h-12 w-[200px] border border-[3px] border-gray-600 rounded-full text-lg py-2 pl-3 pr-[40px]" placeholder="Search" />
 						<div class="absolute right-4 top-3">
 							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-7">
 								<path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
 							</svg>
 						</div>
-						  
 					</div>
 				</div>
 				<div class="w-full flex items-center justify-center">
@@ -27,18 +26,20 @@ import { Image } from 'astro:assets';
 					</div>
 				</div>
 				<div class="w-full flex items-center justify-end">
-					<div>
+					<div class="lg:hidden block cursor-pointer">
 						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-9">
 							<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
 						</svg>				  
 					</div>
+					<button class="hidden lg:block h-12 bg-primary text-primary-foreground flex justify-center items-center px-4 rounded-full">						
+						Subscribe
+					</button>
 				</div>
 			</div>
-
 		</div>
 	</nav>
 	
-	<div class="mx-auto max-w-7xl text-lg px-4 pt-6 sm:px-6 lg:px-8 h-[80px] border-b-4 relative overflow-hidden">
+	<div class="hidden md:block mx-auto max-w-7xl text-lg px-4 pt-6 sm:px-6 lg:px-8 h-[80px] relative overflow-hidden">
 		<div class="w-full flex justify-center items-center absolute -bottom-1">
 			<ul class="flex flex-row gap-4">
 				<li class="active font-semibold border border-0 border-b-4 border-black">All</li>

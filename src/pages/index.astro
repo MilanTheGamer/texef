@@ -3,43 +3,70 @@ import MainLayout from '@/layouts/MainLayout.astro';
 import BannerStory from '@/components/Home/BannerStory.astro';
 import TopStories from '@/components/Home/TopStories.astro';
 import NewsCard from '@/components/NewsCard.astro';
+import { getCollection } from 'astro:content';
+
+const articles = await getCollection("article")
 ---
 
 <MainLayout>
 	<div class="min-h-svh">
 		<section class="flex flex-row w-100 h-[580px] px-6 gap-2 overflow-hidden">
 			<div class="w-2/3 h-full">
-				<a href="/article/first-post/" transition:name="image_using-mdx">
-					<BannerStory />
-				</a>
+				<BannerStory article={articles[0]}/>
 			</div>
 			<div class="w-1/3 h-full">
-				<TopStories />
+				<TopStories articles={articles?.slice(1,5)}/>
 			</div>
 		</section>
 		<section class="mt-20 py-10 border-t-4 border-dotted flex flex-col">
 			<h4 class="text-4xl font-bold" style="">Tech</h4>
 			<div class="mt-10 flex flex-col gap-6">
-				<div class="w-full">
-					<NewsCard 
-						size='lg'
-						author="Suraj",
-						date="Januray 1, 2025";
-						image="/blog-placeholder-3.jpg"
-						heading="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rerum nemo molestias nulla iste."
-						description='Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus placeat quaerat illum harum ullam nemo ipsa accusantium ducimus, repudiandae labore officiis vero aspernatur iure sequi aliquid voluptate cum blanditiis esse.Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus placeat quaerat illum harum ullam nemo ipsa accusantium ducimus, repudiandae labore officiis vero aspernatur iure sequi aliquid voluptate cum blanditiis esse.Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus placeat quaerat illum harum ullam nemo ipsa accusantium ducimus, repudiandae labore officiis vero aspernatur iure sequi aliquid voluptate cum blanditiis esse.'
-					/>
-				</div>
-				<div class="w-full">
-					<NewsCard 
-						size='lg'
-						author="Suraj",
-						date="Januray 1, 2025";
-						image="/blog-placeholder-3.jpg"
-						heading="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rerum nemo molestias nulla iste."
-						description='Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus placeat quaerat illum harum ullam nemo ipsa accusantium ducimus, repudiandae labore officiis vero aspernatur iure sequi aliquid voluptate cum blanditiis esse.Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus placeat quaerat illum harum ullam nemo ipsa accusantium ducimus, repudiandae labore officiis vero aspernatur iure sequi aliquid voluptate cum blanditiis esse.Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus placeat quaerat illum harum ullam nemo ipsa accusantium ducimus, repudiandae labore officiis vero aspernatur iure sequi aliquid voluptate cum blanditiis esse.'
-					/>
-				</div>
+				{
+					articles?.slice(5,7)?.map((article: any) => 
+						<NewsCard 
+							id={article?.data?.id}
+							author={article?.data?.author}
+							date={article?.data?.pubDate}
+							image={article?.data?.heroImage}
+							heading={article?.data?.title}
+							description={article?.data?.description}
+						/>
+					)
+				}
+			</div>
+		</section>
+		<section class="mt-20 py-10 border-t-4 border-dotted flex flex-col">
+			<h4 class="text-4xl font-bold" style="">Finance</h4>
+			<div class="mt-10 flex flex-col gap-6">
+				{
+					articles?.slice(7,9)?.map((article: any) => 
+						<NewsCard 
+							id={article?.data?.id}
+							author={article?.data?.author}
+							date={article?.data?.pubDate}
+							image={article?.data?.heroImage}
+							heading={article?.data?.title}
+							description={article?.data?.description}
+						/>
+					)
+				}
+			</div>
+		</section>
+		<section class="mt-20 py-10 border-t-4 border-dotted flex flex-col">
+			<h4 class="text-4xl font-bold" style="">Lifestyle</h4>
+			<div class="mt-10 flex flex-col gap-6">
+				{
+					articles?.slice(9,10)?.map((article: any) => 
+						<NewsCard 
+							id={article?.data?.id}
+							author={article?.data?.author}
+							date={article?.data?.pubDate}
+							image={article?.data?.heroImage}
+							heading={article?.data?.title}
+							description={article?.data?.description}
+						/>
+					)
+				}
 			</div>
 		</section>
 	</div>

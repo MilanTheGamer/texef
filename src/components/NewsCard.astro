@@ -1,5 +1,8 @@
 ---
+import FormattedDate from './FormattedDate.astro';
+
 interface Props {
+    id: number | string;
     author: string;
     date: Date | string;
     image: string;
@@ -8,25 +11,27 @@ interface Props {
     size?: "sm" | "lg";
 }
 
-const {author, date, image, heading,  description, size = "sm"} = Astro.props;
+const { id, author, date, image, heading,  description, size = "sm"} = Astro.props;
 ---
 
-<div class="w-full min-h-[100px] h-full flex flex-row gap-6">
-    <div class="w-[40%] h-full rounded overflow-hidden">
-        <img src={image} class="w-full h-full" alt="News Card Image" />
-    </div>
-    <div class="w-[60%] flex flex-col justify-between">
-        <h6 class=`${size === "lg" ? "text-2xl" :  "text-md"} line-clamp-3 font-bold`>
-            {heading}
-        </h6>
-        {
-            description &&
-                <p class="text-sm line-clamp-6">{description}</p>
-        }
-        <div class="flex gap-4 font-display text-sm">
-            <span>{author}</span>
-            <span> - </span>
-            <span>{date}</span>
+<a href={`/article/${id}`}  transition:name={`article_${id}_heroImage`} >
+    <div class="w-full min-h-[100px] h-full flex flex-row gap-6">
+        <div class="w-[40%] h-full rounded overflow-hidden">
+            <img src={image} class="w-full h-full" alt="News Card Image" />
+        </div>
+        <div class="w-[60%] flex flex-col justify-between">
+            <h6 class=`${size === "lg" ? "text-2xl" :  "text-md"} line-clamp-3 font-bold`>
+                {heading}
+            </h6>
+            {
+                description &&
+                    <p class="text-sm line-clamp-6">{description}</p>
+            }
+            <div class="flex gap-4 font-display text-sm">
+                <span>{author}</span>
+                <span> - </span>
+                <span><FormattedDate date={new Date(date)}/></span>
+            </div>
         </div>
     </div>
-</div>
+</a>

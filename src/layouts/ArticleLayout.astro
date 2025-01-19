@@ -1,7 +1,7 @@
 ---
 import FormattedDate from '../components/FormattedDate.astro';
 
-const { title, desc, author,  pubDate, updatedDate, heroImage } = Astro.props;
+const { id, title, desc, author,  pubDate, updatedDate, heroImage } = Astro.props;
 ---
 
 <article class="flex flex-col gap-10">
@@ -10,7 +10,7 @@ const { title, desc, author,  pubDate, updatedDate, heroImage } = Astro.props;
             <div class="flex gap-4 font-display text-sm">
                 <span>{author}</span>
                 <span> - </span>
-                <span>{pubDate}</span>
+                <span><FormattedDate date={pubDate}/></span>
             </div>
             <div class="flex flex-col gap-4">
                 <h1 class="text-7xl font-black text-center">{title}</h1>
@@ -20,7 +20,7 @@ const { title, desc, author,  pubDate, updatedDate, heroImage } = Astro.props;
     </section>
     <section>
         <div class="w-full flex justify-center items-center">
-            {heroImage && <img class="w-full h-[510px]" src={heroImage} alt="" transition:name="image_using-mdx" />}
+            {heroImage && <img class="w-full h-[510px]" src={heroImage} alt="" transition:name={`article_${id}_heroImage`} />}
         </div>
     </section>
     <section>

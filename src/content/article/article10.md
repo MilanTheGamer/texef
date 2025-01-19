@@ -1,8 +1,8 @@
 ---
-id: 3,
+id: "3"
 title: "Morbi tristique senectus et netus. Id semper risus in hendrerit."
 description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo viverra. Adipiscing enim eu turpis egestas pretium."
-author: "surajj"
+author: "Suraj"
 pubDate: "Jul 08 2022"
 updatedDate: "Jul 08 2022"
 heroImage: "/blog-placeholder-4.jpg"

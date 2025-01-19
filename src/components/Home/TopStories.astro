@@ -1,7 +1,7 @@
 ---
 import NewsCard from "../NewsCard.astro";
 
-const {} = Astro.props;
+const { articles } = Astro.props;
 ---
 
 <div class="w-full h-full flex flex-col gap-6 px-6 border-l-4 border-dashed">
@@ -9,29 +9,16 @@ const {} = Astro.props;
         <h4 class="text-xl font-black">Top Stories</h4>
     </div>
     <div class="w-full h-full flex flex-col justify-start items-center gap-6">
-        <NewsCard 
-            author="Suraj",
-            date="Januray 1, 2025";
-            image="/blog-placeholder-3.jpg"
-            heading="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rerum nemo molestias nulla iste."
-        />
-        <NewsCard 
-            author="Suraj",
-            date="Januray 1, 2025";
-            image="/blog-placeholder-3.jpg"
-            heading="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rerum nemo molestias nulla iste."
-        />
-        <NewsCard 
-            author="Suraj",
-            date="Januray 1, 2025";
-            image="/blog-placeholder-3.jpg"
-            heading="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rerum nemo molestias nulla iste."
-        />
-        <NewsCard 
-            author="Suraj",
-            date="Januray 1, 2025";
-            image="/blog-placeholder-3.jpg"
-            heading="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rerum nemo molestias nulla iste."
-        />
+        {
+            articles?.map((article: any) => 
+                <NewsCard 
+                    id={article?.data?.id}
+                    author={article?.data?.author}
+                    date={article?.data?.pubDate}
+                    image={article?.data?.heroImage}
+                    heading={article?.data?.title}
+                />
+            )
+        }
     </div>
 </div>
