@@ -15,9 +15,9 @@ const { id, author, date, image, heading,  description, size = "sm"} = Astro.pro
 ---
 
 <a href={`/article/${id}`}  transition:name={`article_${id}_heroImage`} >
-    <div class="w-full min-h-[100px] h-full flex flex-row gap-6">
-        <div class="w-[40%] h-full rounded overflow-hidden">
-            <img src={image} class="w-full h-full" alt="News Card Image" />
+    <div class="min-w-[316px] w-full min-h-[100px] h-full flex flex-row gap-6">
+        <div class="w-[40%] h-full rounded overflow-hidden box-content">
+            <img src={image} class="w-full min-h-[100px] h-full" alt="News Card Image" />
         </div>
         <div class="w-[60%] flex flex-col justify-between">
             <h6 class=`${size === "lg" ? "text-2xl" :  "text-md"} line-clamp-3 font-bold`>

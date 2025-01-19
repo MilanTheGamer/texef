@@ -6,24 +6,24 @@ const topStory = article?.data
 ---
 
 <a href={`/article/${topStory?.id}`} transition:name={`article_${topStory?.id}_heroImage`}>
-    <div class="w-full h-full px-6 relative">
+    <div class="w-full min-h-[580px] md:min-h-[500px] h-full px-6 relative">
         <div class="rounded h-full overflow-hidden">
-            <img src={topStory?.heroImage} class="h-[70%]" alt="Banner Story Image" />
+            <img src={topStory?.heroImage} class="min-h-[420px]" alt="Banner Story Image" />
         </div>
-        <div class="absolute bottom-1 w-[100%] flex justify-center items-center">
-            <div class="max-w-[75%] bg-background rounded p-10 flex flex-col gap-6">
+        <div class="w=full absolute bottom-1 flex justify-center items-center">
+            <div class="w-[75%] bg-background rounded p-10 flex flex-col gap-6 border-2 border-dotted">
                 <div class="flex gap-4 font-display text-md">
                     <span>{topStory?.author}</span>
                     <span> - </span>
                     <span><FormattedDate date={topStory?.pubDate}/></span>
                 </div>
                 <div>
-                    <h3 class="text-4xl font-black">
+                    <h3 class="text-4xl font-black line-clamp-3">
                         {topStory?.title}
                     </h3>
                 </div>
                 <div>
-                    <p class="text-sm">
+                    <p class="text-sm line-clamp-6">
                         {topStory?.description}
                     </p>
                 </div>
