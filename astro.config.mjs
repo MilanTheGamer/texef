@@ -43,6 +43,6 @@ export default defineConfig({
       studioBasePath: "/studio", // If you want to access the Studio on a route
     }),
   ],
-
+  output: "server",
   adapter: vercel(),
 });
