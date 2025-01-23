@@ -1,0 +1,21 @@
+---
+import type { SanityDocument } from "@sanity/client";
+import BannerStory from '@/components/Home/BannerStory.astro';
+import TopStories from '@/components/Home/TopStories.astro';
+import { loadQuery } from '@/sanity/lib/loadQuery';
+import { GET_TOP_STORY_LIST } from '@/sanity/query';
+
+
+const {data: articles} = await loadQuery<SanityDocument[]>({
+    query: GET_TOP_STORY_LIST,
+});
+---
+
+<section class="flex flex-col lg:flex-row w-100 gap-2 overflow-hidden">
+    <div class="w-full lg:w-2/3 h-full">
+        <BannerStory article={articles[0]}/>
+    </div>
+    <div class="w-full lg:w-1/3 h-full">
+        <TopStories articles={articles?.slice(1,5)}/>
+    </div>
+</section>

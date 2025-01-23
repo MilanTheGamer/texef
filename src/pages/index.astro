@@ -3,22 +3,24 @@ import MainLayout from '@/layouts/MainLayout.astro';
 import BannerStory from '@/components/Home/BannerStory.astro';
 import TopStories from '@/components/Home/TopStories.astro';
 import NewsCard from '@/components/NewsCard.astro';
-import { getCollection } from 'astro:content';
+import type { SanityDocument } from "@sanity/client";
+import { sanityClient } from "sanity:client";
+import BannerSection from '@/components/Home/BannerSection.astro';
 
-const articles = await getCollection("article")
 ---
 
 <MainLayout>
 	<div class="min-h-svh">
-		<section class="flex flex-col lg:flex-row w-100 gap-2 overflow-hidden">
+		<BannerSection />
+		<!-- <section class="flex flex-col lg:flex-row w-100 gap-2 overflow-hidden">
 			<div class="w-full lg:w-2/3 h-full">
 				<BannerStory article={articles[0]}/>
 			</div>
 			<div class="w-full lg:w-1/3 h-full">
 				<TopStories articles={articles?.slice(1,5)}/>
 			</div>
-		</section>
-		<section class="mt-20 px-6 py-10 border-t-4 border-dotted flex flex-col">
+		</section> -->
+		<!-- <section class="mt-20 px-6 py-10 border-t-4 border-dotted flex flex-col">
 			<h4 class="text-4xl font-bold" style="">Tech</h4>
 			<div class="mt-10 flex flex-col gap-6">
 				{
@@ -68,6 +70,6 @@ const articles = await getCollection("article")
 					)
 				}
 			</div>
-		</section>
+		</section> -->
 	</div>
 </MainLayout>

@@ -1,27 +1,29 @@
 ---
 import FormattedDate from './FormattedDate.astro';
+import { urlForImage } from "@/sanity/lib/urlForImage";
+import type { SanityAsset } from "@sanity/image-url/lib/types/types";
 
 interface Props {
-    id: number | string;
+    slug: number | string;
     author: string;
-    date: Date | string;
-    image: string;
-    heading: string;
+    publishedDate: Date | string;
+    image: SanityAsset;
+    title: string;
     description?: string;
     size?: "sm" | "lg";
 }
 
-const { id, author, date, image, heading,  description, size = "sm"} = Astro.props;
+const { slug, author, publishedDate, image, title,  description, size = "sm"} = Astro.props;
 ---
 
-<a href={`/article/${id}`}  transition:name={`article_${id}_heroImage`} >
+<a href={`/article/${slug}`}  transition:name={`article_${slug}_heroImage`} >
     <div class="min-w-[316px] w-full min-h-[100px] h-full flex flex-row gap-6">
         <div class="w-[40%] h-full rounded overflow-hidden box-content">
-            <img src={image} class="w-full min-h-[100px] h-full" alt="News Card Image" />
+            <img src={urlForImage(image).format("webp").url()} class="w-full min-h-[100px] h-full" alt="News Card Image" />
         </div>
         <div class="w-[60%] flex flex-col justify-between">
             <h6 class=`${size === "lg" ? "text-2xl" :  "text-md"} line-clamp-3 font-bold`>
-                {heading}
+                {title}
             </h6>
             {
                 description &&
@@ -30,7 +32,7 @@ const { id, author, date, image, heading,  description, size = "sm"} = Astro.pro
             <div class="flex gap-4 font-display text-sm">
                 <span>{author}</span>
                 <span> - </span>
-                <span><FormattedDate date={new Date(date)}/></span>
+                <span><FormattedDate date={publishedDate}/></span>
             </div>
         </div>
     </div>

@@ -1,30 +1,33 @@
 ---
-import FormattedDate from "../FormattedDate.astro";
+import { urlForImage } from "@/sanity/lib/urlForImage";
+import FormattedDate from "../FormattedDate.astro"
 
-const {article} = Astro.props;
-const topStory = article?.data
+const { article } = Astro.props;
 ---
 
-<a href={`/article/${topStory?.id}`} transition:name={`article_${topStory?.id}_heroImage`}>
+<a href={`/article/${article?.slug}`} transition:name={`article_${article?.slug}_heroImage`}>
     <div class="w-full min-h-[580px] md:min-h-[500px] h-full px-6 relative">
         <div class="rounded h-full overflow-hidden">
-            <img src={topStory?.heroImage} class="min-h-[420px]" alt="Banner Story Image" />
+             {
+                article?.heroImage &&
+                 <img src={urlForImage(article?.heroImage).format("webp").url()} class="min-h-[420px]" alt="Banner Story Image" />
+             }
         </div>
         <div class="w=full absolute bottom-1 flex justify-center items-center">
             <div class="w-[75%] bg-background rounded p-10 flex flex-col gap-6 border-2 border-dotted">
                 <div class="flex gap-4 font-display text-md">
-                    <span>{topStory?.author}</span>
+                    <span>{article?.author}</span>
                     <span> - </span>
-                    <span><FormattedDate date={topStory?.pubDate}/></span>
+                    <span><FormattedDate date={article?.publishedDate}/></span>
                 </div>
                 <div>
                     <h3 class="text-4xl font-black line-clamp-3">
-                        {topStory?.title}
+                        {article?.title}
                     </h3>
                 </div>
                 <div>
                     <p class="text-sm line-clamp-6">
-                        {topStory?.description}
+                        {article?.description}
                     </p>
                 </div>
             </div>

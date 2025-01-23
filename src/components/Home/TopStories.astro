@@ -12,11 +12,11 @@ const { articles } = Astro.props;
         {
             articles?.map((article: any) => 
                 <NewsCard 
-                    id={article?.data?.id}
-                    author={article?.data?.author}
-                    date={article?.data?.pubDate}
-                    image={article?.data?.heroImage}
-                    heading={article?.data?.title}
+                    slug={article?.slug}
+                    author={article?.author}
+                    publishedDate={article?.publishedDate}
+                    image={article?.heroImage}
+                    title={article?.title}
                 />
             )
         }
