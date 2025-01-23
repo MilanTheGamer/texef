@@ -10,6 +10,8 @@ import tailwind from "@astrojs/tailwind";
 
 import sanity from "@sanity/astro";
 
+import vercel from "@astrojs/vercel";
+
 const { PUBLIC_SANITY_PROJECT_ID } = loadEnv(
   process.env.PUBLIC_SANITY_PROJECT_ID || "",
   process.cwd(),
@@ -25,6 +27,7 @@ const { PUBLIC_SANITY_DATASET } = loadEnv(
 // https://astro.build/config
 export default defineConfig({
   site: "https://texef.com",
+
   integrations: [
     mdx(),
     sitemap(),
@@ -40,4 +43,6 @@ export default defineConfig({
       studioBasePath: "/studio", // If you want to access the Studio on a route
     }),
   ],
+
+  adapter: vercel(),
 });
