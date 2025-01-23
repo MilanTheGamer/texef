@@ -38,9 +38,9 @@ export default defineConfig({
     sanity({
       projectId: PUBLIC_SANITY_PROJECT_ID,
       dataset: PUBLIC_SANITY_DATASET,
-      useCdn: false, // for static builds
+      // useCdn: false, // for static builds
       // apiVersion: "2024-07-24", // insert the current date to access the latest version of the API
-      studioBasePath: "/studio", // If you want to access the Studio on a route
+      // studioBasePath: "/studio", // If you want to access the Studio on a route
     }),
   ],
   output: "server",
