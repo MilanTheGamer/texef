@@ -1,0 +1,28 @@
+---
+import { type CollectionEntry, getCollection } from 'astro:content';
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import { render } from 'astro:content';
+import MainLayout from '@/layouts/MainLayout.astro';
+import { loadQuery } from '@/sanity/lib/loadQuery';
+import type { SanityDocument } from '@sanity/client';
+import { GET_ARTICLE } from '@/sanity/query';
+import PortableText from '@/components/PortableText.astro';
+
+const { slug } = Astro.params
+
+if (!slug) return Astro.redirect("/404");
+
+const {data} = await loadQuery<SanityDocument[]>({
+    query: GET_ARTICLE(slug),
+});
+
+const article = data[0]
+
+if(!article) return Astro.redirect("/404");
+---
+
+<MainLayout>
+	<ArticleLayout article={article}>
+		<PortableText portableText={article?.body} />
+	</Article>
+</MainLayout>

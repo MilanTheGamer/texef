@@ -1,7 +1,9 @@
 ---
+import { urlForImage } from '@/sanity/lib/urlForImage';
 import FormattedDate from '../components/FormattedDate.astro';
 
-const { id, title, desc, author,  pubDate, updatedDate, heroImage } = Astro.props;
+const { article } = Astro.props;
+const {slug, title, description, author,  publishedDate, heroImage} = article
 ---
 
 <article class="flex flex-col gap-10">
@@ -10,17 +12,20 @@ const { id, title, desc, author,  pubDate, updatedDate, heroImage } = Astro.prop
             <div class="flex gap-4 font-display text-sm">
                 <span>{author}</span>
                 <span> - </span>
-                <span><FormattedDate date={pubDate}/></span>
+                <span><FormattedDate date={publishedDate}/></span>
             </div>
             <div class="flex flex-col gap-4">
                 <h1 class="text-4xl md:text-7xl font-black text-center">{title}</h1>
-                <p class="text-xl">{desc}</p>
+                <p class="text-xl text-center">{description}</p>
             </div>
         </div>
     </section>
     <section>
         <div class="w-full flex justify-center items-center">
-            {heroImage && <img class="w-full h-[510px]" src={heroImage} alt="" transition:name={`article_${id}_heroImage`} />}
+            {
+                heroImage &&
+                <img class="w-full h-[510px]" src={urlForImage(article?.heroImage).format("webp").url()} alt="" transition:name={`article_${slug}_heroImage`} />
+             }
         </div>
     </section>
     <section>

@@ -5,7 +5,6 @@ import TopStories from '@/components/Home/TopStories.astro';
 import { loadQuery } from '@/sanity/lib/loadQuery';
 import { GET_TOP_STORY_LIST } from '@/sanity/query';
 
-
 const {data: articles} = await loadQuery<SanityDocument[]>({
     query: GET_TOP_STORY_LIST,
 });

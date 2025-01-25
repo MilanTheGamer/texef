@@ -1,0 +1,39 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import { loadQuery } from '@/sanity/lib/loadQuery';
+import type { SanityDocument } from '@sanity/client';
+import { GET_ARTICLES_BY_CATEGORY } from '@/sanity/query';
+import NewsCard from '@/components/NewsCard.astro';
+
+const { slug } = Astro.params
+
+if (!slug) return Astro.redirect("/404");
+
+const {data: categoryData} = await loadQuery<SanityDocument[]>({
+    query: GET_ARTICLES_BY_CATEGORY({slug}),
+});
+
+const categoryName = categoryData[0]?.category
+
+if(!categoryData) return Astro.redirect("/404");
+---
+
+<MainLayout>
+    <div class="my-6">
+        <h1 class="text-5xl font-bold">{categoryName}</h1>
+        <div class="mt-10 flex flex-col gap-6">
+            {
+                categoryData?.map((article: any) => 
+                    <NewsCard 
+                        slug={article?.slug}
+                        author={article?.author}
+                        publishedDate={article?.publishedDate}
+                        image={article?.heroImage}
+                        title={article?.title}
+                        description={article?.description}
+                    />
+                )
+            }
+        </div>
+    </div>
+</MainLayout>

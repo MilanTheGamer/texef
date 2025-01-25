@@ -1,75 +1,24 @@
 ---
 import MainLayout from '@/layouts/MainLayout.astro';
-import BannerStory from '@/components/Home/BannerStory.astro';
-import TopStories from '@/components/Home/TopStories.astro';
-import NewsCard from '@/components/NewsCard.astro';
-import type { SanityDocument } from "@sanity/client";
-import { sanityClient } from "sanity:client";
 import BannerSection from '@/components/Home/BannerSection.astro';
+import CategorySection from '@/components/Home/CategorySection.astro';
 
+import { loadQuery } from '@/sanity/lib/loadQuery';
+import type { SanityDocument } from '@sanity/client';
+import { GET_ALL_CATEGORIES } from '@/sanity/query';
+
+const {data: categoryList} = await loadQuery<SanityDocument[]>({
+    query: GET_ALL_CATEGORIES,
+});
 ---
 
 <MainLayout>
 	<div class="min-h-svh">
 		<BannerSection />
-		<!-- <section class="flex flex-col lg:flex-row w-100 gap-2 overflow-hidden">
-			<div class="w-full lg:w-2/3 h-full">
-				<BannerStory article={articles[0]}/>
-			</div>
-			<div class="w-full lg:w-1/3 h-full">
-				<TopStories articles={articles?.slice(1,5)}/>
-			</div>
-		</section> -->
-		<!-- <section class="mt-20 px-6 py-10 border-t-4 border-dotted flex flex-col">
-			<h4 class="text-4xl font-bold" style="">Tech</h4>
-			<div class="mt-10 flex flex-col gap-6">
-				{
-					articles?.slice(5,7)?.map((article: any) => 
-						<NewsCard 
-							id={article?.data?.id}
-							author={article?.data?.author}
-							date={article?.data?.pubDate}
-							image={article?.data?.heroImage}
-							heading={article?.data?.title}
-							description={article?.data?.description}
-						/>
-					)
-				}
-			</div>
-		</section>
-		<section class="mt-20 px-6 py-10 border-t-4 border-dotted flex flex-col">
-			<h4 class="text-4xl font-bold" style="">Finance</h4>
-			<div class="mt-10 flex flex-col gap-6">
-				{
-					articles?.slice(7,9)?.map((article: any) => 
-						<NewsCard 
-							id={article?.data?.id}
-							author={article?.data?.author}
-							date={article?.data?.pubDate}
-							image={article?.data?.heroImage}
-							heading={article?.data?.title}
-							description={article?.data?.description}
-						/>
-					)
-				}
-			</div>
-		</section>
-		<section class="mt-20 px-6 py-10 border-t-4 border-dotted flex flex-col">
-			<h4 class="text-4xl font-bold" style="">Lifestyle</h4>
-			<div class="mt-10 flex flex-col gap-6">
-				{
-					articles?.slice(9,10)?.map((article: any) => 
-						<NewsCard 
-							id={article?.data?.id}
-							author={article?.data?.author}
-							date={article?.data?.pubDate}
-							image={article?.data?.heroImage}
-							heading={article?.data?.title}
-							description={article?.data?.description}
-						/>
-					)
-				}
-			</div>
-		</section> -->
+		{
+			categoryList?.map(category => 
+				<CategorySection category={category} />
+			)
+		}
 	</div>
 </MainLayout>

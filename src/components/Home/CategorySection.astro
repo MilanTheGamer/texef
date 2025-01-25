@@ -1,0 +1,31 @@
+---
+import { loadQuery } from '@/sanity/lib/loadQuery';
+import type { SanityDocument } from '@sanity/client';
+import { GET_ARTICLES_BY_CATEGORY } from '@/sanity/query';
+import NewsCard from '../NewsCard.astro';
+
+const { category } = Astro.props
+
+const {data: categoryList} = await loadQuery<SanityDocument[]>({
+    query: GET_ARTICLES_BY_CATEGORY({slug: category.slug, from: 0, to: 3}),
+});
+---
+
+
+<section class="mt-20 px-6 py-10 border-t-4 border-dotted flex flex-col">
+    <h4 class="text-4xl font-bold" style="">{category?.name}</h4>
+    <div class="mt-10 flex flex-col gap-6">
+        {
+            categoryList?.map((article: any) => 
+                <NewsCard 
+                    slug={article?.slug}
+                    author={article?.author}
+                    publishedDate={article?.publishedDate}
+                    image={article?.heroImage}
+                    title={article?.title}
+                    description={article?.description}
+                />
+            )
+        }
+    </div>
+</section>

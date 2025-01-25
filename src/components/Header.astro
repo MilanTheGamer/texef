@@ -1,7 +1,12 @@
 ---
-import HeaderLink from './HeaderLink.astro';
-import { SITE_TITLE } from '../consts';
 import { Image } from 'astro:assets';
+import { loadQuery } from '@/sanity/lib/loadQuery';
+import type { SanityDocument } from '@sanity/client';
+import { GET_ALL_CATEGORIES } from '@/sanity/query';
+
+const {data: categoryList} = await loadQuery<SanityDocument[]>({
+    query: GET_ALL_CATEGORIES,
+});
 ---
 
 <header class="min-h-full font-display border-b-4 pb-2">
@@ -42,13 +47,20 @@ import { Image } from 'astro:assets';
 	<div class="hidden md:block mx-auto max-w-7xl text-lg px-4 pt-6 sm:px-6 lg:px-8 h-[80px] relative overflow-hidden">
 		<div class="w-full flex justify-center items-center absolute -bottom-1">
 			<ul class="flex flex-row gap-4">
-				<li class="active font-semibold border border-0 border-b-4 border-black">All</li>
-				<li>Tech</li>
-				<li>Science</li>
-				<li>Money</li>
-				<li>Travel</li>
-				<li>Entertainment</li>
-				<li>More</li>
+				<li class="active font-semibold border border-0 border-b-4 border-black">
+					<a href={`/category`}>
+						All
+					</a>
+				</li>
+				{
+					categoryList?.map((category) =>
+						<li>
+							<a href={`/category/${category?.slug}`}>
+								{category?.name}
+							</a>
+						</li>
+					)
+				}
 			</ul>
 		</div>
 	</div>
