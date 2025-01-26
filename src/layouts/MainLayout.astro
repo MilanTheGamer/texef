@@ -4,8 +4,11 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { ClientRouter } from 'astro:transitions';
+import UnderMaintainance from '@/components/UnderMaintainance.astro';
 
 const { title, description } = Astro.props;
+
+const underMaintainanceStatus = import.meta.env.PUBLIC_MAINTAINANCE_STATUS;
 ---
 
 <html lang="en">
@@ -15,10 +18,15 @@ const { title, description } = Astro.props;
 	</head>
 
 	<body>
-		<Header />
-			<main class="mx-auto max-w-7xl py-6">
-				<slot />
-			</main>
-		<Footer />
+		{
+			underMaintainanceStatus === "active" ? 
+				<UnderMaintainance />
+			:
+				<Header />
+					<main class="mx-auto max-w-7xl py-6">
+						<slot />
+					</main>
+				<Footer />
+		}
 	</body>
 </html>
