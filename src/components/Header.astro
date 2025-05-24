@@ -44,11 +44,10 @@ const {data: categoryList} = await loadQuery<SanityDocument[]>({
 		</div>
 	</nav>
 	
-	<div class="hidden md:block mx-auto max-w-7xl text-lg px-4 pt-6 sm:px-6 lg:px-8 h-[80px] relative overflow-hidden">
-		<div class="w-full flex justify-center items-center absolute -bottom-1">
-			<ul class="flex flex-row gap-4">
-				<li class="active font-semibold border border-0 border-b-4 border-black">
-					<a href={`/category`}>
+	<div class="hidden md:flex w-full mt-6 justify-center item-center">
+		<ul class="flex flex-row gap-4">
+				<li class="active font-semibold border-0 border-b-4 border-black">
+					<a href={`/`}>
 						All
 					</a>
 				</li>
@@ -61,7 +60,6 @@ const {data: categoryList} = await loadQuery<SanityDocument[]>({
 						</li>
 					)
 				}
-			</ul>
-		</div>
+		</ul>
 	</div>
 </header>
